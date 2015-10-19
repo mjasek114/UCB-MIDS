@@ -1,0 +1,26 @@
+I was not able to find which procedures had the greatest variability between
+hospitals because my STDDEV SQL function was not working.  AVG worked but
+STDDEV was not working.  Had that been working then the below query
+would have yielded the procedures with the most variability.  And if
+my SQL skills would have been better I would have normalized the data
+by dividing each of the procedure scores by its maximum.  I also would 
+have accounted for the fact that for some procedures a high score was
+good and for some procedures a high score was bad.  I could have done this
+by multiplying the scores for the procedures where high was bad by -1 
+and the using the absolute value of the average.
+
+
+result = sqlContext.sql('SELECT COUNT(SCORE), AVG(CAST(SCORE AS INT)), STDDEV(CAST(SCORE AS INT)) AS A1, MEASURENAME FROM hospital_procedure GROUP BY MEASURENAME ORDER BY A1 DESC LIMIT 10')
+
+
+c0   A1                 MEASURENAME
+4436 16839.188683498647 Emergency departm...
+4414 207.07227004984142 ED1
+3903 117.04611837048424 OP 18
+97   93.73195876288659  Relievers for Inp...
+97   93.42268041237114  Systemic Corticos...
+96   83.51041666666667  Home Management P...
+3503 80.61689980017128  Healthcare worker...
+4543 78.58617653532907  Initial antibioti...
+4543 77.0149680827647   Evaluation of LVS...
+4414 74.51200724966017  ED2
