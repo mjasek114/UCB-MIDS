@@ -1,0 +1,59 @@
+Below is a list of some of the states that were output by 9 measures that I chose to 
+look at.  Unfortunately, my SQL skills are not honed enough at this point for me
+to do a more complex analysis even though I wanted to.  What I did was choose 9
+representative measures (AMI_10, AMI_7A, OP_21, HF_2, IMM_2, OP_23, PN_6, STK_1,
+and VTE_1) and found some of the states with the top scores for these measures
+and created a table listing them.  The query that I used was below.
+
+Some of the top states are as follows:
+FL,NH,ME,MA,MD,CT,DE,CO,AR,AZ,HI
+
+result = sqlContext.sql('SELECT CAST(SCORE AS INT) AS A1, STATE FROM  \
+hospital_procedure_state WHERE MEASUREID="AMI_10" ORDER BY A1 DESC LIMIT 20')
+result.show()
+
+AMI_10,,AMI_7A,,OP_21,,HF_2,,IMM_2,,OP_23,,PN_6,,STK_1,,VTE_1,
+A1,STATE,A1,STATE,A1,STATE,A1,STATE,A1,STATE,A1,STATE,A1,STATE,A1,STATE,A1,STATE
+100,AK,84,AL,48,AK,99,AZ,94,AL,66,AR,97,AZ,95,AK,94,AR
+99,AL,81,AR,45,CO,99,CA,94,AR,69,AZ,97,CA,95,AL,94,CO
+99,CA,62,AZ,47,IA,100,CT,96,DE,66,CO,97,CO,93,AR,93,CT
+100,CO,67,CA,45,ID,100,DE,97,FL,69,CT,97,CT,95,AZ,92,DE
+99,CT,100,CT,50,IL,100,FL,94,HI,67,FL,98,FL,95,DC,94,FL
+100,DE,100,FL,49,IN,100,GA,94,IL,71,IL,98,HI,95,DE,93,HI
+99,FL,100,ID,44,KS,99,HI,94,IN,66,IN,97,MA,62,GU,92,ID
+99,HI,75,MI,48,ME,99,IL,95,KY,73,MA,98,MD,95,IA,92,MA
+99,ID,100,MO,43,MN,100,MA,96,MD,74,MO,99,ME,95,IN,95,MD
+99,IN,100,MT,49,MO,100,MD,96,ME,67,NE,97,MI,95,KS,98,ME
+99,MA,100,NE,48,MT,100,ME,95,NC,73,NH,98,NC,95,KY,93,NC
+99,MD,67,OH,50,ND,100,MI,95,NE,75,NJ,97,NH,92,LA,94,NE
+99,ME,80,PA,43,NE,100,NC,96,NH,68,OH,98,NJ,95,MA,95,NH
+99,MN,100,RI,51,OH,100,NH,95,NJ,71,OK,97,OH,94,MD,92,NJ
+99,MO,67,SC,51,RI,100,NJ,97,NV,72,PA,97,OR,91,MS,93,OH
+99,MT,100,TN,43,SD,100,OH,95,OH,68,SC,97,PA,94,NM,93,PA
+99,NC,82,TX,41,UT,100,PA,96,SC,69,SD,97,SC,60,PR,97,PR
+99,NE,75,VA,47,VA,100,RI,95,UT,67,WA,97,VA,91,VI,93,SC
+99,NH,67,WA,40,WI,100,SC,95,VA,67,WI,97,VT,94,VT,95,VA
+99,NJ,67,WV,49,WY,100,VA,95,WV,67,WY,97,WA,94,WV,92,WI
+
+I could not get the STDDEV funtion to work in the below query so I do not have variabilty data.
+
+result = sqlContext.sql('SELECT COUNT(SCORE), AVG(CAST(SCORE AS INT)), STDDEV(CAST(SCORE AS INT)), \
+MAX(CAST(SCORE AS INT)) AS A1, MEASURENAME FROM hospital_procedure_state GROUP BY MEASURENAME \
+ORDER BY A1 DESC LIMIT 10')
+
+This is the query without STDDEV.
+
+c0  c1                 A1  MEASURENAME
+56  280.89285714285717 900 ED1
+265 253.17735849056604 555 ED1 - Median time...
+56  100.94642857142857 290 ED2
+265 93.52830188679245  284 ED2 - Admit decis...
+265 133.08301886792452 265 OP18 - Median tim...
+56  65.55357142857143  194 Median Time to Tr...
+56  125.55357142857143 191 OP 18
+56  95.21428571428571  100 Surgery Patients ...
+56  95.39285714285714  100 Aspirin prescribe...
+56  94.51785714285714  100 Postoperative Uri...
+
+
+
