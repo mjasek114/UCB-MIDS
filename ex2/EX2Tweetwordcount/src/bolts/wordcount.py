@@ -9,7 +9,7 @@ class WordCounter(Bolt):
 
     def initialize(self, conf, ctx):
         self.counts = Counter()
-        self.redis = StrictRedis()
+#        self.redis = StrictRedis()
 
     def process(self, tup):
         word = tup.values[0]
