@@ -2,15 +2,14 @@ import psycopg2
 import sys
 
 #create a connection to the database that holds the results
-conn = psycopg2.connect(database="tweettest", user="postgres", password="test123", host="localhost", port="5432")
+conn = psycopg2.connect(database="tcount", user="postgres", password="", host="localhost", port="5432")
 
 #create a cursor to use to perform actions on the database
 cur = conn.cursor()
 
 #Select
-#if len(sys.argv) == 1:
-if True:
-    cur.execute("SELECT word, count FROM tweettest")
+if len(sys.argv) == 1:
+    cur.execute("SELECT word, count FROM tweetwordcount")
     records = cur.fetchall()
     wordlist = []
     for rec in records:
@@ -20,16 +19,14 @@ if True:
     print wordlist
 else:
     requestedWord = sys.argv[1]
-#    requestedWord = "christmas"
-    print requestedWord
-    cur.execute("SELECT word, count FROM tweettest")
+    cur.execute("SELECT word, count FROM tweetwordcount")
     records = cur.fetchall()
     count = 0
     for rec in records:
         word = rec[0]
         if word == requestedWord:
             count = rec[1]
-#            break
+            break
     conn.commit()
     print "Total number of occurences of \"" + requestedWord + "\": " + str(count) + "\n"
 

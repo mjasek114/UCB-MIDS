@@ -2,14 +2,14 @@ import psycopg2
 import sys
 
 #create a connection to the database that holds the results
-conn = psycopg2.connect(database="tweettest", user="postgres", password="test123", host="localhost", port="5432")
+conn = psycopg2.connect(database="tcount", user="postgres", password="", host="localhost", port="5432")
 
 #create a cursor to use to perform actions on the database
 cur = conn.cursor()
 
 #Select
 if len(sys.argv) == 1:
-    cur.execute("SELECT word, count FROM tweettest")
+    cur.execute("SELECT word, count FROM tweetwordcount")
     records = cur.fetchall()
     wordlist = []
     for rec in records:
@@ -30,7 +30,7 @@ elif len(sys.argv) == 2:
     if len(args) > 1:
         upperBound = float(args[1])
         upperBoundThere = True
-    cur.execute("SELECT word, count FROM tweettest")
+    cur.execute("SELECT word, count FROM tweetwordcount")
     records = cur.fetchall()
     wordlist = []
     for rec in records:
@@ -52,7 +52,7 @@ else:
     #?? could fix it to accepts 25,54 100 as arguments and reject invalid args
     lowerBound = float(sys.argv[1].strip(','))
     upperBound = float(sys.argv[2].strip(','))
-    cur.execute("SELECT word, count FROM tweettest")
+    cur.execute("SELECT word, count FROM tweetwordcount")
     records = cur.fetchall()
     wordlist = []
     for rec in records:
