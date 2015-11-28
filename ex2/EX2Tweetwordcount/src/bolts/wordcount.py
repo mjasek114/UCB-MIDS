@@ -4,13 +4,11 @@ from collections import Counter
 from streamparse.bolt import Bolt
 import psycopg2
 
-
 class WordCounter(Bolt):
 
     def initialize(self, conf, ctx):
         self.counts = Counter()
 #        self.redis = StrictRedis()
-
 #        self.conn = psycopg2.connect(database="tcount", user="postgres", password="", host="localhost", port="5432")
 
     def process(self, tup):
