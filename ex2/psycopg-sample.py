@@ -7,18 +7,16 @@
 
 import psycopg2
 
-conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
+conn = psycopg2.connect(database="tcount2", user="postgres", password="", host="localhost", port="5432")
 
 #Create a Table
 #The first step is to create a cursor. 
 
-cur = conn.cursor()
-cur.execute('''CREATE TABLE Tweetwordcount
-       (word TEXT PRIMARY KEY     NOT NULL,
-       count INT     NOT NULL);''')
-conn.commit()
-conn.close()
-
+#cur = conn.cursor()
+#cur.execute('''CREATE TABLE tweetwordcount2
+#       (word TEXT PRIMARY KEY     NOT NULL,
+#       count INT     NOT NULL);''')
+#conn.commit()
 
 #Running sample SQL statements
 #Inserting/Selecting/Updating
@@ -30,17 +28,18 @@ conn.close()
 cur = conn.cursor()
 
 #Insert
-cur.execute("INSERT INTO Tweetwordcount (word,count) \
-      VALUES ('test', 1)");
+cur.execute("INSERT INTO tweetwordcount2 (word,count) VALUES ('test5', 5)")
 conn.commit()
 
 #Update
-#Assuming you are passing the tuple (uWord, uCount) as an argument
-cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
+#Assuming you are passing the tuple (uCount, uWord) as an argument
+uCount = 25
+uWord = 'test'
+cur.execute("UPDATE tweetwordcount2 SET count=%s WHERE word=%s", (uCount, uWord))
 conn.commit()
 
 #Select
-cur.execute("SELECT word, count from Tweetwordcount")
+cur.execute("SELECT word, count from tweetwordcount2")
 records = cur.fetchall()
 for rec in records:
    print "word = ", rec[0]

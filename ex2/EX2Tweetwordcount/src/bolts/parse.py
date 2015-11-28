@@ -13,6 +13,7 @@ class ParseTweet(Bolt):
 
     def process(self, tup):
         tweet = tup.values[0]  # extract the tweet
+        print(tweet)
 
         # Split the tweet into words
         words = tweet.split()
@@ -34,7 +35,9 @@ class ParseTweet(Bolt):
             if word.startswith("http"): continue
 
             # Strip leading and lagging punctuations
-            aword = word.strip("\"?><,'.:;)")
+#            aword = word.strip("\"?><,'.:;)")
+            aword = word.strip("\"\\`~!@#$%^&*()_-+={}[]|:;'<>,.?/")
+            aword = aword.lower()
 
             # now check if the word contains only ascii
             if len(aword) > 0 and ascii_string(word):
