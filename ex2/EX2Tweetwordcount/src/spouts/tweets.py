@@ -62,11 +62,8 @@ class Tweets(Spout):
 
         # Create the stream and listen for english tweets
         stream = tweepy.Stream(auth, listener, timeout=None)
-        stream.filter(languages=["en"], track=["christmas"], async=True)
-
-#        self.sentences = [ "She advised him to take a long holiday, so he immediately quit work and took a trip around the worl#d", "I was very glad to get a present from her", "he will be here in half an hour", "She saw him eating a sandwich", ]
-#        self.sentences = itertools.cycle(self.sentences)
-#        self.count = 0
+        stream.filter(track=["a", "A", "the", "THE", "i", "I", "you", "YOU", "u", "U"], async=True)
+#        stream.sample()
 
     def queue(self):
         return self._queue
@@ -85,12 +82,6 @@ class Tweets(Spout):
         except Queue.Empty:
             self.log("Empty queue exception ")
             time.sleep(0.1) 
-
-    def next_tuple2(self):
- #       if self.count < 144:
-            tweet = next(self.sentences)
-            self.emit([tweet])
- #           self.count += 1
 
     def ack(self, tup_id):
         pass  # if a tuple is processed properly, do nothing

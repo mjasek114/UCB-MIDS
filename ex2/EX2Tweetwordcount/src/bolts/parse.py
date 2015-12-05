@@ -42,6 +42,7 @@ class ParseTweet(Bolt):
             # now check if the word contains only ascii
             if len(aword) > 0 and ascii_string(word):
                 valid_words.append([aword])
+                print(aword)
 
         if not valid_words: return
 

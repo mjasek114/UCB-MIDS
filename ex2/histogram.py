@@ -23,7 +23,6 @@ if len(sys.argv) == 1:
         count = elem[1]
         print word + ": " + str(count)
 elif len(sys.argv) == 2:
-    #?? could fix to reject invalid args
     args = sys.argv[1].strip(',').split(',')
     lowerBound = float(args[0])
     upperBoundThere = False
@@ -49,7 +48,6 @@ elif len(sys.argv) == 2:
         count = elem[1]
         print word + ": " + str(count)
 else:
-    #?? could fix it to accepts 25,54 100 as arguments and reject invalid args
     lowerBound = float(sys.argv[1].strip(','))
     upperBound = float(sys.argv[2].strip(','))
     cur.execute("SELECT word, count FROM tweetwordcount")
