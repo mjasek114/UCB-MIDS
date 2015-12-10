@@ -25,7 +25,8 @@ with this command
 ./start_postgres.sh
 
 4.  Clone my UCB-MIDS repository from github with this command
-git clone https://mjasek114@github.com/mjasek114/UCB-MIDS
+git clone https://github.com/mjasek114/UCB-MIDS
+you may need to add your user name in front of github.com
 
 5.  Change to the UCB-MIDS directory with this command
 cd UCB-MIDS
@@ -49,23 +50,26 @@ cd exercise_2
 9.  Change to the EX2Tweetwordcount directory with this command
 cd EX2Tweetwordcount/
 
-10. Type this command to run my applications
+10. Add your Twitter credentials to the file 
+UCB-MIDS/exercise_2/EX2Tweetwordcount/src/spouts/tweets.py
+
+11. Type this command to run my applications
 sparse run
 
-   10a.  Press Ctrl-z when you want to stop the application
+   11a.  Press Ctrl-z when you want to stop the application
 
-   10b.  Note that if you need to run the 'sparse run' command again, you will need to delete the table tweetwourdcount from the tcount database in Postgres and then recreate the table tweetwordcount in the tcount database.  You can use the file exercise_2/rmdbtable.sh to help.  Depending on how you comment it out, it will remove the whole tcount database or just the tweetcount table.  The script will recreate the table.
+   11b.  Note that if you need to run the 'sparse run' command again, you will need to delete the table tweetwourdcount from the tcount database in Postgres and then recreate the table tweetwordcount in the tcount database.  You can use the file exercise_2/rmdbtable.sh to help.  Depending on how you comment it out, it will remove the whole tcount database or just the tweetcount table.  The script will recreate the table.
 
-11.  Move up 1 directory with this command
+12.  Move up 1 directory with this command
 cd ..
 
-12.  Run the serving files with these commands
+13.  Run the serving files with these commands
    a. python finalresults.py hello
    b. python finalresults.py
    c. python histogram.py 3, 8
 
-13.  The requested screenshots are in the screenshots directory
+14.  The requested screenshots are in the screenshots directory
 
-14.  The Architecture.pdf file is in the ex2 directory
+15.  The Architecture.pdf file is in the exercise_2 directory
 
-15.  The Plot.png file is in the ex2 directory
+16.  The Plot.png file is in the exercise_2 directory
