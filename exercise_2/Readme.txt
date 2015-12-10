@@ -34,7 +34,7 @@ cd UCB-MIDS
 git pull origin hw_dev
 
 7.  Change to the ex2 directory with this command
-cd ex2
+cd exercise_2
 
 8.  Run the install script to install my application
 ./install-script.sh
@@ -46,13 +46,15 @@ cd ex2
 
    8b. Press Enter to continue
 
-9.  Change to the ex2 directory with this command
+9.  Change to the EX2Tweetwordcount directory with this command
 cd EX2Tweetwordcount/
 
 10. Type this command to run my applications
 sparse run
 
    10a.  Press Ctrl-z when you want to stop the application
+
+   10b.  Note that if you need to run the 'sparse run' command again, you will need to delete the table tweetwourdcount from the tcount database in Postgres and then recreate the table tweetwordcount in the tcount database.  You can use the file exercise_2/rmdbtable.sh to help.  Depending on how you comment it out, it will remove the whole tcount database or just the tweetcount table.  The script will recreate the table.
 
 11.  Move up 1 directory with this command
 cd ..
